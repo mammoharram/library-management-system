@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="336.0" minWidth="279.0" prefHeight="336.0" prefWidth="279.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <TextField layoutX="65.0" layoutY="51.0" prefWidth="200.0" />
+    <TextField layoutX="65.0" layoutY="86.0" prefWidth="200.0" />
+    <ComboBox layoutX="65.0" layoutY="121.0" prefHeight="21.0" prefWidth="146.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ListView layoutX="65.0" layoutY="150.0" prefHeight="143.0" prefWidth="200.0" />
+    <Button layoutX="222.0" layoutY="121.0" mnemonicParsing="false" text="add" />
+    <Label layoutX="14.0" layoutY="51.0" text="Title" />
+    <Label layoutX="11.0" layoutY="86.0" text="ISBN" />
+    <Label layoutX="11.0" layoutY="124.0" text="Author" />
+    <Button layoutX="220.0" layoutY="301.0" mnemonicParsing="false" text="Save" />
+    <Label layoutX="11.0" layoutY="14.0" text="Add Book">
+      <font>
+        <Font name="System Bold Italic" size="15.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>
