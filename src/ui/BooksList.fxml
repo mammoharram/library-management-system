@@ -17,7 +17,7 @@
         <Font name="System Bold Italic" size="15.0" />
       </font>
     </Label>
-    <Button id="ad" fx:id="addCopyButton" layoutX="198.0" layoutY="297.0" mnemonicParsing="false" onAction="#onAddCopyAction" text="Add copy" />
+    <Button id="ad" fx:id="addCopyButton" layoutX="326.0" layoutY="290.0" mnemonicParsing="false" onAction="#onAddCopyAction" text="Add copy" />
     <TableView fx:id="booksTable" layoutX="19.0" layoutY="97.0" prefHeight="187.0" prefWidth="419.0">
       <columns>
         <TableColumn prefWidth="75.0" text="Title" fx:id="titleCol" />
@@ -27,5 +27,6 @@
         <TableColumn prefWidth="75.0" text="Availability" fx:id="availabilityCol" />
       </columns>
     </TableView>
+    <Button id="ad" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" onAction="#onPressAddBook" text="Add book" />
   </children>
 </AnchorPane>

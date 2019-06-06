@@ -71,7 +71,7 @@ public class LoginController extends Stage implements LibWindow{
 		try {
 			// Load the fxml file and create a new stage for the popup dialog.
 //			Start.primStage().close();
-			System.out.println(SystemController.successLogin);
+//			System.out.println(SystemController.successLogin);
 			FXMLLoader loader = new FXMLLoader();
 			
 			loader.setLocation(Start.class.getResource("../ui/MainManu.fxml"));

@@ -82,4 +82,8 @@ public class BooksListController {
 		addCopyButton.setDisable(false);
 		selectedBook = book;
 	}
+	@FXML
+	private void onPressAddBook() {
+		Start.showAddbook(this);
+	}
 }
