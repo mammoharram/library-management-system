@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="350.0" minWidth="350.0" prefHeight="350.0000999999975" prefWidth="350.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.MembersController">
+<AnchorPane minHeight="350.0" minWidth="350.0" prefHeight="370.0000999999975" prefWidth="350.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.MembersController">
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="19.0" layoutY="19.0" text="Libaray Members">
