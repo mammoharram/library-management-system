@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import business.ControllerInterface;
@@ -8,9 +9,13 @@ import business.SystemController;
 import dataaccess.Auth;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
 
 public class MainManuController {
 	@FXML
@@ -72,7 +77,7 @@ public class MainManuController {
 	@FXML
 	private void onPressBooksButton() {
 
-		System.out.println("Adding book ");
+		Start.showBooksListWindow(this);
 
 	}
 
