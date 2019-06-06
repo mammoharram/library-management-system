@@ -66,7 +66,7 @@ public class MainManuController {
 	@FXML
 	private void onPressCheckOutButton() {
 
-		System.out.println("Checking out book ");
+		Start.showCheckoutWindow(this);
 
 	}
 
