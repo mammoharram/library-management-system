@@ -138,6 +138,7 @@ public class MembersController {
 			// Set the person into the controller.
 			MembersAddEditController controller = loader.getController();
 			controller.setDialogStage(stage);
+			controller.setIsEditMode(title != "");
 			controller.populateControlls(member);
 
 			// Show the dialog and wait until the user closes it

@@ -52,6 +52,7 @@ public class MembersAddEditController {
 
 	private LibraryMember member;
 	private Stage myStage;
+	private boolean isEditMode= false;
 	SystemController sysController =new SystemController();
 
 	public void populateControlls(LibraryMember lMember){
@@ -70,6 +71,9 @@ public class MembersAddEditController {
 			txtMemberState.setText(member.getAddress().getState());
 		}
 
+	}
+	public void setIsEditMode(boolean b) {
+		isEditMode = b;
 	}
 	public void setDialogStage(Stage stage) {
 		this.myStage = stage;
@@ -105,7 +109,8 @@ public class MembersAddEditController {
 	private boolean isInputValid() {
 		String errorMessage = "";
 
-		if (txtMemberId.getText() == null || txtMemberId.getText().length() == 0 || sysController.checkMemberIdExist(txtMemberId.getText())) {
+		if (txtMemberId.getText() == null || txtMemberId.getText().length() == 0
+				|| (!isEditMode && sysController.checkMemberIdExist(txtMemberId.getText()))) {
 			errorMessage += "Invalid member ID!\n";
 		}
 
