@@ -198,4 +198,40 @@ public class Start extends Application {
 		}
 	}
 
+	public static void showCheckoutWindow(MainManuController mainManuController) {
+		hideAllWindows();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Start.class.getResource("./Checkout.fxml"));
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+			Scene scene = new Scene(page);
+
+			primStage.setScene(scene);
+			scene.getStylesheets().add(mainManuController.getClass().getResource("library.css").toExternalForm());
+			primStage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void showCheckoutRecordWindow(MainManuController mainManuController) {
+		hideAllWindows();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Start.class.getResource("./CheckoutRecord.fxml"));
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+			Scene scene = new Scene(page);
+
+			primStage.setScene(scene);
+			scene.getStylesheets().add(mainManuController.getClass().getResource("library.css").toExternalForm());
+			primStage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

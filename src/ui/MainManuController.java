@@ -66,7 +66,7 @@ public class MainManuController {
 	@FXML
 	private void onPressCheckOutButton() {
 
-		System.out.println("Checking out book ");
+		Start.showCheckoutWindow(this);
 
 	}
 
@@ -99,8 +99,7 @@ public class MainManuController {
 	@FXML
 	private void onPressCheckOutRecordButton() {
 
-		System.out.println("Checking Edit book ");
-
+		Start.showCheckoutRecordWindow(this);
 	}
 
 }
