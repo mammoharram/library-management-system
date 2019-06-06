@@ -5,26 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="347.0" minWidth="309.0" prefHeight="347.0" prefWidth="309.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane minHeight="347.0" minWidth="309.0" prefHeight="347.0" prefWidth="309.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.MembersAddEditController">
   <!-- TODO Add Nodes -->
   <children>
-    <TextField editable="false" layoutX="87.0" layoutY="46.0" prefWidth="200.0" />
-    <TextField layoutX="87.0" layoutY="203.0" prefWidth="200.0" />
-    <TextField layoutX="87.0" layoutY="178.0" prefWidth="200.0" />
-    <TextField layoutX="87.0" layoutY="145.0" prefWidth="200.0" />
-    <TextField layoutX="87.0" layoutY="114.0" prefWidth="200.0" />
-    <TextField layoutX="87.0" layoutY="83.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberId" editable="true" layoutX="87.0" layoutY="46.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberCity" layoutX="87.0" layoutY="203.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberStreet" layoutX="87.0" layoutY="178.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberPhone" layoutX="88.0" layoutY="145.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberLastName" layoutX="87.0" layoutY="114.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberFirstName" layoutX="87.0" layoutY="83.0" prefWidth="200.0" />
     <Label layoutX="14.0" layoutY="46.0" text="Member ID" />
     <Label layoutX="14.0" layoutY="78.0" text="First Name" />
     <Label layoutX="14.0" layoutY="117.0" text="Last Name" />
     <Label layoutX="14.0" layoutY="151.0" text="Phone" />
     <Label layoutX="14.0" layoutY="178.0" text="Street" />
     <Label layoutX="15.0" layoutY="203.0" text="City" />
-    <Button layoutX="242.0" layoutY="309.0" mnemonicParsing="false" text="Save" />
+    <Button fx:id="btnSave" layoutX="242.0" layoutY="309.0" mnemonicParsing="false" onAction="#btnSave_Clicked" text="Save" />
     <Label layoutX="14.0" layoutY="14.0" text="Add Member" />
-    <TextField layoutX="89.0" layoutY="233.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberZip" layoutX="89.0" layoutY="233.0" prefWidth="200.0" />
     <Label layoutX="17.0" layoutY="233.0" text="Zip" />
-    <TextField layoutX="88.0" layoutY="268.0" prefWidth="200.0" />
+    <TextField fx:id="txtMemberState" layoutX="89.0" layoutY="268.0" prefWidth="200.0" />
     <Label layoutX="17.0" layoutY="268.0" text="State" />
   </children>
 </AnchorPane>

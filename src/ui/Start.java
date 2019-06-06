@@ -90,11 +90,11 @@ public class Start extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 				hideAllWindows();
-//    			if(!LoginController.INSTANCE.isInitialized()) {
-//    				LoginController.INSTANCE.init();
-//    			}
-//    			LoginWindow.INSTANCE.clear();
-//    			LoginWindow.INSTANCE.show();
+				// if(!LoginController.INSTANCE.isInitialized()) {
+				// LoginController.INSTANCE.init();
+				// }
+				// LoginWindow.INSTANCE.clear();
+				// LoginWindow.INSTANCE.show();
 				showLoginPane();
 			}
 
@@ -168,7 +168,7 @@ public class Start extends Application {
 			// Set the person into the controller.
 			LoginController controller = loader.getController();
 			controller.setDialogStage(primStage);
-//			controller.setPerson(person);
+			// controller.setPerson(person);
 
 			// Show the dialog
 			primStage.show();
@@ -197,7 +197,25 @@ public class Start extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public static void showMembersListWindow(MainManuController mainManuController) {
+		hideAllWindows();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Start.class.getResource("./MembersList.fxml"));
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+			Scene scene = new Scene(page);
+
+			primStage.setScene(scene);
+			scene.getStylesheets().add(mainManuController.getClass().getResource("library.css").toExternalForm());
+			primStage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public static void showAddbook(BooksListController bookListController) {
 		hideAllWindows();
 		FXMLLoader loader = new FXMLLoader();
@@ -253,3 +271,4 @@ public class Start extends Application {
 	}
 
 }
+
