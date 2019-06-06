@@ -87,9 +87,7 @@ public class MainManuController {
 	 */
 	@FXML
 	private void onPressMembersButton() {
-
-		System.out.println("Checking Edit book ");
-
+		Start.showMembersListWindow(this);
 	}
 
 	/**

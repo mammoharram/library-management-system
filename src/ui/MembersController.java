@@ -3,10 +3,13 @@ package ui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import business.LibraryMember;
 import business.SystemController;
+import dataaccess.Auth;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,22 +44,54 @@ public class MembersController {
 	private TextField txtSearch;
 
 	private SystemController sysController;
+	ObservableList<LibraryMember> allMembers;
 
 	@FXML
-	private void initialize(){
+	private void initialize() {
 		// Initialize the Member table with the two columns.
 		colMemberId.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMemberId()));
-		colMemberName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstName()+" "+cellData.getValue().getLastName()));
+		colMemberName.setCellValueFactory(cellData -> new SimpleStringProperty(
+				cellData.getValue().getFirstName() + " " + cellData.getValue().getLastName()));
+
+		if (Objects.deepEquals(SystemController.currentAuth, Auth.LIBRARIAN)) {
+			btnAdd.setVisible(false);
+			btnEdit.setVisible(false);
+			btnPrint.setVisible(true);
+		} else if (Objects.deepEquals(SystemController.currentAuth, Auth.ADMIN)) {
+			btnAdd.setVisible(true);
+			btnEdit.setVisible(true);
+			btnPrint.setVisible(false);
+		}
 
 		sysController = new SystemController();
 
 		populateMemberGrid();
 	}
+
 	void populateMemberGrid() {
-		ObservableList<LibraryMember> allMembers = sysController.getAllLibraryMember();
+		allMembers = sysController.getAllLibraryMember();
 
 		lstMembers.setItems(allMembers);
 	}
+
+	public void searchById(ActionEvent event) {
+		if (txtSearch.getText() == null || txtSearch.getText().length() == 0)
+			populateMemberGrid();
+		else {
+			allMembers = FXCollections.observableArrayList();
+			try {
+				LibraryMember lm = sysController.getMemberById(txtSearch.getText());
+				if (lm != null)
+					allMembers.add(lm);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			lstMembers.setItems(allMembers);
+			lstMembers.refresh();
+		}
+	}
+
 	public void printMembers(ActionEvent event) {
 
 	}
@@ -69,8 +104,7 @@ public class MembersController {
 		LibraryMember selectedPerson = lstMembers.getSelectionModel().getSelectedItem();
 		if (selectedPerson != null) {
 			openAddEditDialog(selectedPerson, "Edit Member: " + selectedPerson.getMemberId());
-		}
-		else{
+		} else {
 			Alert errorAlert = new Alert(AlertType.ERROR);
 
 			errorAlert.setTitle("No Selection");
@@ -80,9 +114,10 @@ public class MembersController {
 		}
 	}
 
-	private void openAddEditDialog(LibraryMember member, String title){
+	private void openAddEditDialog(LibraryMember member, String title) {
 		try {
-			//Stage primaryStage = (Stage) memberIdLabel.getScene().getWindow();
+			// Stage primaryStage = (Stage)
+			// memberIdLabel.getScene().getWindow();
 			Stage stage = new Stage();
 			stage.setTitle(title);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/AddEditMember.fxml"));
@@ -90,12 +125,12 @@ public class MembersController {
 			AnchorPane page = (AnchorPane) loader.load();
 
 			// Create the dialog Stage.
-			//Stage dialogStage = new Stage();
-			//dialogStage.setTitle("Edit Member");
+			// Stage dialogStage = new Stage();
+			// dialogStage.setTitle("Edit Member");
 			stage.initModality(Modality.WINDOW_MODAL);
-			//stage.initOwner(primaryStage);
-			//Scene scene = new Scene(page);
-			//dialogStage.setScene(scene);
+			// stage.initOwner(primaryStage);
+			// Scene scene = new Scene(page);
+			// dialogStage.setScene(scene);
 
 			Scene scene = new Scene(page);
 			stage.setScene(scene);
@@ -108,20 +143,8 @@ public class MembersController {
 			// Show the dialog and wait until the user closes it
 			stage.showAndWait();
 			populateMemberGrid();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*try {
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/ui/MembersList.fxml"));
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.showAndWait();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}*/
 	}
 }
