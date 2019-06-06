@@ -51,6 +51,7 @@ public class MainManuController {
 	 */
 	@FXML
 	private void initialize() {
+		okClicked=true;
 		System.err.println(Objects.deepEquals(SystemController.currentAuth,Auth.LIBRARIAN));
 //		BooleanBinding disable = on.selectedProperty().not();
 		if(Objects.deepEquals(SystemController.currentAuth,Auth.LIBRARIAN)) {

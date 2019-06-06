@@ -58,9 +58,8 @@ public class LoginController extends Stage implements LibWindow{
 		try {
 			c.login(login_id.getText().trim(), password.getText().trim());
 			System.out.println(SystemController.currentAuth);
-			showMainMan();
-			
-//			System.out.println("am in");
+			boolean result=showMainMan();
+			System.out.println("login "+result);
 		} catch (LoginException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Wrong login details "+e.getMessage());
@@ -71,7 +70,8 @@ public class LoginController extends Stage implements LibWindow{
 	public boolean showMainMan() {
 		try {
 			// Load the fxml file and create a new stage for the popup dialog.
-			Start.primStage().close();
+//			Start.primStage().close();
+			System.out.println(SystemController.successLogin);
 			FXMLLoader loader = new FXMLLoader();
 			
 			loader.setLocation(Start.class.getResource("../ui/MainManu.fxml"));
@@ -79,7 +79,7 @@ public class LoginController extends Stage implements LibWindow{
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			// Create the dialog Stage.
-			dialogStage = new Stage();
+			Stage dialogStage = new Stage();
 			
 			dialogStage.setTitle("Main Manu");
 			dialogStage.initModality(Modality.WINDOW_MODAL);

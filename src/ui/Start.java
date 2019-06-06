@@ -164,7 +164,7 @@ public class Start extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 
 			// Create the dialog Stage.
-			primStage = new Stage();
+			Stage primStage = new Stage();
 			primStage.setTitle("Login");
 			primStage.initModality(Modality.WINDOW_MODAL);
 			primStage.initOwner(primaryStage);
