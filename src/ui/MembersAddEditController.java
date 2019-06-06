@@ -50,60 +50,69 @@ public class MembersAddEditController {
 	private void initialize() {
 	}
 
-	private LibraryMember member;
 	private Stage myStage;
-	private boolean isEditMode= false;
-	SystemController sysController =new SystemController();
+	private boolean isEditMode = false;
+	SystemController sysController = new SystemController();
 
-	public void populateControlls(LibraryMember lMember){
-		member = lMember;
+	public void populateControlls(LibraryMember lMember) {
+		if (lMember == null) {
 
-		txtMemberId.setText(member.getMemberId());
-		txtMemberFirstName.setText(member.getFirstName());
-		txtMemberLastName.setText(member.getLastName());
-		txtMemberPhone.setText(member.getTelephone());
+			txtMemberId.clear();
+			txtMemberFirstName.clear();
+			txtMemberLastName.clear();
+			txtMemberPhone.clear();
 
-		if(member.getAddress() != null)
-		{
-			txtMemberStreet.setText(member.getAddress().getStreet());
-			txtMemberZip.setText(member.getAddress().getZip());
-			txtMemberCity.setText(member.getAddress().getCity());
-			txtMemberState.setText(member.getAddress().getState());
+			txtMemberStreet.clear();
+			txtMemberZip.clear();
+			txtMemberCity.clear();
+			txtMemberState.clear();
+			return;
+		}
+
+		txtMemberId.setText(lMember.getMemberId());
+		txtMemberFirstName.setText(lMember.getFirstName());
+		txtMemberLastName.setText(lMember.getLastName());
+		txtMemberPhone.setText(lMember.getTelephone());
+
+		if (lMember.getAddress() != null) {
+			txtMemberStreet.setText(lMember.getAddress().getStreet());
+			txtMemberZip.setText(lMember.getAddress().getZip());
+			txtMemberCity.setText(lMember.getAddress().getCity());
+			txtMemberState.setText(lMember.getAddress().getState());
 		}
 
 	}
+
 	public void setIsEditMode(boolean b) {
 		isEditMode = b;
+		txtMemberId.setEditable(!b);
 	}
+
 	public void setDialogStage(Stage stage) {
 		this.myStage = stage;
 	}
+
 	@FXML
 	void btnSave_Clicked(ActionEvent event) {
 		if (!isInputValid())
 			return;
-		Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to save?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to save?", ButtonType.YES, ButtonType.NO,
+				ButtonType.CANCEL);
 		alert.showAndWait();
 
-		if (alert.getResult() == ButtonType.YES)
-		   {
-				Address a=new Address(txtMemberStreet.getText(),
-						txtMemberCity.getText(),
-						txtMemberState.getText(),
-						txtMemberZip.getText());
-				this.member.setMemberId(txtMemberId.getText());
-				this.member.setFirstName(txtMemberFirstName.getText());
-				this.member.setLastName(txtMemberLastName.getText());
-				this.member.setTelephone(txtMemberPhone.getText());
-				this.member.setAddress(a);
+		if (alert.getResult() == ButtonType.YES) {
+			Address a = new Address(txtMemberStreet.getText(), txtMemberCity.getText(), txtMemberState.getText(),
+					txtMemberZip.getText());
+			LibraryMember member = new LibraryMember(txtMemberId.getText(), txtMemberFirstName.getText(),
+					txtMemberLastName.getText(), txtMemberPhone.getText(), a);
 
-				try {
-					sysController.addMember(this.member);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				myStage.close();
+			try {
+				sysController.addMember(member);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			myStage.close();
+		}
 	}
 
 	private boolean isInputValid() {

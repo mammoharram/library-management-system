@@ -12,10 +12,6 @@ final public class LibraryMember extends Person implements Serializable {
 	private CheckoutRecord checkoutRecord;
 	private String memberId;
 
-	public LibraryMember() {
-		super();
-	}
-
 	public LibraryMember(String memberId, String fname, String lname, String tel, Address add) {
 		super(fname, lname, tel, add);
 		this.memberId = memberId;

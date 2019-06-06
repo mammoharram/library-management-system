@@ -2,12 +2,16 @@ package ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import business.CheckoutEntry;
 import business.LibraryMember;
 import business.SystemController;
 import dataaccess.Auth;
+import dataaccess.DataAccess;
+import dataaccess.DataAccessFacade;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +30,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class MembersController {
 	@FXML
@@ -93,11 +98,18 @@ public class MembersController {
 	}
 
 	public void printMembers(ActionEvent event) {
-
+		LibraryMember member = lstMembers.getSelectionModel().getSelectedItem();
+		List<CheckoutEntry> checkoutEntries = member.getCheckoutRecord().getCheckoutEntries();
+		System.out.println("Checkout records for Member : " + member.getFirstName() + " " + member.getLastName());
+		for (CheckoutEntry checkoutEntry : checkoutEntries) {
+			System.out.println("Book Title : " + checkoutEntry.getCheckedoutBookCopy().getBook().getTitle()
+					+ " | Book Copy # : " + checkoutEntry.getCheckedoutBookCopy().getCopyNum() + " | checkoutDate : "
+					+ checkoutEntry.getCheckoutDate() + " | dueDate : " + checkoutEntry.getDueDate());
+		}
 	}
 
 	public void addMember(ActionEvent event) {
-		openAddEditDialog(new LibraryMember(), "");
+		openAddEditDialog(null, "");
 	}
 
 	public void editMember(ActionEvent event) {
