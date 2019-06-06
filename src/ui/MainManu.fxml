@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.MainManuController">
+  <children>
+    <Button id="checkout"  layoutX="72.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="76.0" prefWidth="170.0" text="Checkout">
+      <font>
+        <Font name="System Bold Italic" size="13.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button  id="addMember"  font="$x1" layoutX="226.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleAddMember" prefHeight="76.0" prefWidth="170.0" text="Add Member" />
+    <Button id="addBook"  font="$x1" layoutX="396.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleAddBook" prefHeight="76.0" prefWidth="170.0" text="Add Book" />
+    <Button id="editMember"  font="$x1" layoutX="72.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleEditMember" prefHeight="76.0" prefWidth="170.0" text="Edit Member" />
+    <Button id="checkoutRecord"  font="$x1" layoutX="397.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleCheckOutRecord" prefHeight="76.0" prefWidth="170.0" text="Checkout Record" />
+    <Label layoutX="187.0" layoutY="24.0" prefHeight="38.0" prefWidth="250.0" text="Library management system">
+      <font>
+        <Font name="System Bold Italic" size="15.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

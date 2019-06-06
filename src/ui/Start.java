@@ -1,13 +1,16 @@
 package ui;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+
 
 import business.ControllerInterface;
 import business.SystemController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,19 +19,26 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
 public class Start extends Application {
+	private Stage primaryStage;
+
 	public static void main(String[] args) {
 		launch(args);
 	}
 	private static Stage primStage = null;
+	private BorderPane rootLayout;
+	
 	public static Stage primStage() {
 		return primStage;
 	}
@@ -41,7 +51,8 @@ public class Start extends Application {
 	private static Stage[] allWindows = { 
 		LoginWindow.INSTANCE,
 		AllMembersWindow.INSTANCE,	
-		AllBooksWindow.INSTANCE
+		AllBooksWindow.INSTANCE,
+		LoginController.INSTANCE
 	};
 	
 	public static void hideAllWindows() {
@@ -78,6 +89,7 @@ public class Start extends Application {
 		topContainer.getChildren().add(splashBox);
 		topContainer.getChildren().add(imageHolder);
 		
+		
 		Menu optionsMenu = new Menu("Options");
 		MenuItem login = new MenuItem("Login");
 		
@@ -85,12 +97,14 @@ public class Start extends Application {
             @Override
             public void handle(ActionEvent e) {
             	hideAllWindows();
-    			if(!LoginWindow.INSTANCE.isInitialized()) {
-    				LoginWindow.INSTANCE.init();
-    			}
-    			LoginWindow.INSTANCE.clear();
-    			LoginWindow.INSTANCE.show();
+//    			if(!LoginController.INSTANCE.isInitialized()) {
+//    				LoginController.INSTANCE.init();
+//    			}
+//    			LoginWindow.INSTANCE.clear();
+//    			LoginWindow.INSTANCE.show();
+            	showLoginPane();
             }
+            
         });			
 							
 		MenuItem bookIds = new MenuItem("All Book Ids");
@@ -142,5 +156,35 @@ public class Start extends Application {
 		scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
 		primaryStage.show();
 	}
+	public boolean showLoginPane() {
+		try {
+			// Load the fxml file and create a new stage for the popup dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Start.class.getResource("../ui/Login.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			primStage = new Stage();
+			primStage.setTitle("Login");
+			primStage.initModality(Modality.WINDOW_MODAL);
+			primStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			primStage.setScene(scene);
+
+			// Set the person into the controller.
+			LoginController controller = loader.getController();
+			controller.setDialogStage(primStage);
+//			controller.setPerson(person);
+
+			// Show the dialog
+			primStage.show();
+			
+			return controller.isOkClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
+
 }
