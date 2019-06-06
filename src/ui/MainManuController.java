@@ -99,8 +99,7 @@ public class MainManuController {
 	@FXML
 	private void onPressCheckOutRecordButton() {
 
-		System.out.println("Checking Edit book ");
-
+		Start.showCheckoutRecordWindow(this);
 	}
 
 }
