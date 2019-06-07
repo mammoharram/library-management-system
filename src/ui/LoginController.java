@@ -26,12 +26,12 @@ public class LoginController extends Stage implements LibWindow{
 	private TextField login_id;
 	@FXML
 	private PasswordField password;
-	
+
 	// Reference to the main application.
 ;
 	private Stage dialogStage;
 	private boolean okClicked = false;
-	
+
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
@@ -43,7 +43,7 @@ public class LoginController extends Stage implements LibWindow{
 	public boolean isOkClicked() {
 		return okClicked;
 	}
-	
+
 
 
 	/**
@@ -54,18 +54,15 @@ public class LoginController extends Stage implements LibWindow{
 	private void handlelogin() {
 		Start.hideAllWindows();
 		ControllerInterface c = new SystemController();
-		System.out.println(login_id.getText()+" "+password.getText());
 		try {
 			c.login(login_id.getText().trim(), password.getText().trim());
-			System.out.println(SystemController.currentAuth);
 			boolean result=showMainMan();
-			System.out.println("login "+result);
 		} catch (LoginException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Wrong login details "+e.getMessage());
 		}
-		
-		
+
+
 	}
 	public boolean showMainMan() {
 		try {
@@ -73,26 +70,26 @@ public class LoginController extends Stage implements LibWindow{
 //			Start.primStage().close();
 //			System.out.println(SystemController.successLogin);
 			FXMLLoader loader = new FXMLLoader();
-			
+
 			loader.setLocation(Start.class.getResource("../ui/MainManu.fxml"));
-			
+
 			AnchorPane page = (AnchorPane) loader.load();
-			
+
 			// Create the dialog Stage.
 			Stage dialogStage = new Stage();
-			
+
 			dialogStage.setTitle("Main Manu");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
-		
+
 			dialogStage.initOwner(Start.primStage());
 			Scene scene = new Scene(page);
-		
+
 			dialogStage.setScene(scene);
-			
+
 			// Set the person into the controller.
 			MainManuController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			
+
 //			controller.setPerson(person);
 
 			// Show the dialog and wait until the user closes it
@@ -106,7 +103,7 @@ public class LoginController extends Stage implements LibWindow{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public boolean isInitialized() {
@@ -116,8 +113,8 @@ public class LoginController extends Stage implements LibWindow{
 	@Override
 	public void isInitialized(boolean val) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 
 }

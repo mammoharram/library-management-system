@@ -18,7 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class addBookController {
-	
+
 	@FXML
 	private TextField titleField;
 	@FXML
@@ -32,7 +32,7 @@ public class addBookController {
 	List<Author> autorsList;
 	List<Author> bookAutorsList=new ArrayList<Author>();
 	HashMap<Integer,Author> index=new HashMap<Integer,Author>();
-	
+
 	@FXML
 	public void initialize() {
 		authors.getItems().removeAll(authors.getItems());
@@ -48,22 +48,23 @@ public class addBookController {
 			authors.setId(""+1);
 			index.put(i,p);
 			i++;
-			
+
 		}
-		
+
 		authors.getSelectionModel().select("select author");
 	}
-	
+
 	@FXML
 	public void onPressAdd() {
+		if(authors.getValue() == "select author") {
+			return;
+		}
 		list.getItems().add(authors.getValue());
-		System.out.println(authors.getId());
 	}
 	@FXML
 	public void onPressSave() {
 		DataAccess da = new DataAccessFacade();
 		List<Integer> indexes=new ArrayList<Integer>();
-		
 		String joined = list.getItems().stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(","));
@@ -73,17 +74,18 @@ public class addBookController {
 			indexes.add(Integer.parseInt(first));
 		}
 
-		
+
 		for(int i=0;i<indexes.size();i++) {
 			bookAutorsList.add(index.get(indexes.get(i)));
-			
+
 		}
 		Book book=new Book(isbnField.getText(),titleField.getText(),Integer.parseInt(maxCheckOutLengField.getText()),bookAutorsList);
 		da.saveBook(book);
 		titleField.clear();
 		isbnField.clear();
 		maxCheckOutLengField.clear();
-		authors.setValue(null);//		
+		list.getItems().clear();
+		authors.setValue(null);//
 	}
 
 }

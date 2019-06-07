@@ -19,7 +19,6 @@ public class SystemController implements ControllerInterface {
 
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
-		System.out.println(id+" "+password);
 		HashMap<String, User> map = da.readUserMap();
 		if(!map.containsKey(id)) {
 			throw new LoginException("ID " + id + " not found");
