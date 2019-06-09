@@ -9,7 +9,7 @@
 <AnchorPane minHeight="150.0" minWidth="200.0" prefHeight="216.0" prefWidth="422.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.LoginController">
   <!-- TODO Add Nodes -->
   <children>
-    <TextField id="login_id" fx:id="login_id" layoutX="112.0" layoutY="48.0" prefWidth="200.0" />
+    <TextField fx:id="login_id" layoutX="112.0" layoutY="48.0" prefWidth="200.0" />
     <Label layoutX="16.0" layoutY="19.0" text="Login">
       <font>
         <Font name="System Bold Italic" size="15.0" />
@@ -17,7 +17,8 @@
     </Label>
     <Label layoutX="16.0" layoutY="49.0" text="User Name" />
     <Label layoutX="16.0" layoutY="79.0" text="Password" />
-    <PasswordField id="password" fx:id="password" layoutX="111.0" layoutY="79.0" prefWidth="200.0" />
+    <PasswordField fx:id="password" layoutX="111.0" layoutY="79.0" prefWidth="200.0" />
     <Button layoutX="249.0" layoutY="113.0" mnemonicParsing="false" onAction="#handlelogin" text="Login" />
+    <Label fx:id="errorMessage" layoutX="22.0" layoutY="167.0" prefHeight="22.000099999997474" prefWidth="386.0" text="Label" textFill="#ff3d00" visible="false" />
   </children>
 </AnchorPane>

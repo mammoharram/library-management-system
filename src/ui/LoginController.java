@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Scene;
-
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +24,8 @@ public class LoginController extends Stage implements LibWindow{
 
 	@FXML
 	private TextField login_id;
+	@FXML
+	private Label errorMessage;
 	@FXML
 	private PasswordField password;
 
@@ -56,10 +58,13 @@ public class LoginController extends Stage implements LibWindow{
 		ControllerInterface c = new SystemController();
 		try {
 			c.login(login_id.getText().trim(), password.getText().trim());
-			boolean result=showMainMan();
+			errorMessage.setVisible(false);
+			showMainMan();
 		} catch (LoginException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Wrong login details "+e.getMessage());
+//			System.out.println("Wrong login details "+e.getMessage());
+			errorMessage.setText("Wrong login details "+e.getMessage());
+			errorMessage.setVisible(true);
 		}
 
 
